@@ -28,7 +28,9 @@ export default async function Home() {
         />
         <div>
           <p>Hey there 👋, welcome to:</p>
-          <h1 className="text-5xl font-bold">ReactSprint</h1>
+          <h1 className="animate-text bg-gradient-to-r from-primary via-pink-500 to-purple-500 bg-clip-text text-5xl font-bold text-transparent">
+            ReactSprint
+          </h1>
           <p className="py-6">
             Level up your React.js skills with free, engaging challenges.
           </p>

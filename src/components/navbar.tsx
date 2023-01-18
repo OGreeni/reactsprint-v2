@@ -31,25 +31,29 @@ export default function Navbar() {
             className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
           >
             <li>
-              <a>Challenge Board</a>
+              <Link href="/challenge-board">Challenge Board</Link>
             </li>
             <li>
-              <a className="justify-between">Contribute</a>
+              <Link href="/contribute" className="justify-between">
+                Contribute
+              </Link>
             </li>
             <li>
-              <a>Login</a>
+              <Link href="/login">Login</Link>
             </li>
           </ul>
         </div>
-        <a className="btn-ghost btn text-xl normal-case">
+        <Link href="/" className="btn-ghost btn text-xl normal-case">
           <LottieWrapper
             play
             loop
             animationData={animatedShapes}
             className="h-10 w-10"
           />
-          ReactSprint
-        </a>
+          <span className="animate-text bg-gradient-to-r from-primary via-pink-500 to-purple-500 bg-clip-text text-transparent">
+            ReactSprint
+          </span>
+        </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

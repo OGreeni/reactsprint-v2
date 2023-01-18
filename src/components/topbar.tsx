@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function Topbar() {
+interface Props {
+  searchQuery: string;
+  setSearchQuery: (value: string) => void;
+}
+
+export default function Topbar({ searchQuery, setSearchQuery }: Props) {
   return (
     <div className="relative w-full text-primary">
       <svg
@@ -21,6 +26,8 @@ export default function Topbar() {
         type="text"
         placeholder="Search"
         className="input-bordered input-primary input w-full px-10"
+        onChange={(e) => setSearchQuery(e.target.value)}
+        value={searchQuery}
       />
     </div>
   );
