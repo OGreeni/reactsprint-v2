@@ -23,10 +23,12 @@ const difficulties = ["easy", "medium", "hard"] as const;
 export type Category = (typeof categories)[number];
 export type Difficulty = (typeof difficulties)[number];
 
+// TODO: zustand to synchronize clicked filters with the challenge board
+// migrate search query to zustand
+
 export default function Sidebar() {
   return (
     <>
-      {/* todo: moobile sidebar */}
       <div className="h-full border-primary p-2 lg:block lg:rounded-l lg:border-y lg:border-l">
         <div className="h-1/2 overflow-auto border-b border-primary text-center">
           <div className="text-md mb-5 font-bold">Categories</div>

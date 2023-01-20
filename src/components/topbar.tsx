@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useStore } from "../store";
 interface Props {
   searchQuery: string;
   setSearchQuery: (value: string) => void;
