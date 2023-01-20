@@ -27,8 +27,8 @@ export default function Sidebar() {
   return (
     <>
       {/* todo: moobile sidebar */}
-      <div className="h-full rounded-l border-y border-l border-primary p-2 lg:block">
-        <div className="h-1/2 overflow-scroll border-b border-primary text-center">
+      <div className="h-full border-primary p-2 lg:block lg:rounded-l lg:border-y lg:border-l">
+        <div className="h-1/2 overflow-auto border-b border-primary text-center">
           <div className="text-md mb-5 font-bold">Categories</div>
           <ul className="flex flex-col gap-1 p-1">
             {categories.map((category) => (
