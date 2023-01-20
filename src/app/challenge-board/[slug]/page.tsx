@@ -48,6 +48,7 @@ export default function Page({ params: { slug } }: Props) {
         and rating stars
     */}
       <Heading className="text-center">{slug}</Heading>
+      <div>Challenge Details</div>
       <div className="mockup-window border border-base-300">
         <WrappedSandpack
           template="react"

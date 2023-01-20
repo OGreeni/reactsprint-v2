@@ -58,13 +58,13 @@ export default function Navbar() {
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Challenge Board</a>
+            <Link href="/challenge-board">Challenge Board</Link>
           </li>
           <li>
-            <a>Contribute</a>
+            <Link href="/contribute">Contribute</Link>
           </li>
           <li>
-            <a>Login</a>
+            <Link href="/login">Login</Link>
           </li>
         </ul>
       </div>
