@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 import type { Category, Difficulty } from "./components/sidebar";
 
@@ -11,13 +12,21 @@ type State = {
   setDifficultyFilters: (difficultyFilters: Difficulty[]) => void;
 };
 
-export const useStore = create<State>((set) => ({
-  searchQuery: "",
-  setSearchQuery: (searchQuery) => set((state) => ({ searchQuery })),
-  categoryFilters: [],
-  setCategoryFilters: (categoryFilters) =>
-    set((state) => ({ categoryFilters })),
-  difficultyFilters: [],
-  setDifficultyFilters: (difficultyFilters) =>
-    set((state) => ({ difficultyFilters })),
-}));
+export const useStore = create(
+  persist<State>(
+    (set, get) => ({
+      searchQuery: "",
+      setSearchQuery: (searchQuery) => set((state) => ({ searchQuery })),
+      categoryFilters: [],
+      setCategoryFilters: (categoryFilters) =>
+        set((state) => ({ categoryFilters })),
+      difficultyFilters: ["easy", "medium", "hard"],
+      setDifficultyFilters: (difficultyFilters) =>
+        set((state) => ({ difficultyFilters })),
+    }),
+    {
+      name: "filters-storage",
+      getStorage: () => sessionStorage,
+    }
+  )
+);

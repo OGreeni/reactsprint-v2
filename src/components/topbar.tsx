@@ -1,12 +1,10 @@
 import React from "react";
 
 import { useStore } from "../store";
-interface Props {
-  searchQuery: string;
-  setSearchQuery: (value: string) => void;
-}
 
-export default function Topbar({ searchQuery, setSearchQuery }: Props) {
+export default function Topbar() {
+  const { searchQuery, setSearchQuery } = useStore();
+
   return (
     <div className="relative w-full text-primary">
       <svg

@@ -8,7 +8,6 @@ import Sidebar from "@/components/sidebar";
 import Topbar from "@/components/topbar";
 
 export default function Page() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -45,10 +44,10 @@ export default function Page() {
                 />
               </svg>
             </button>
-            <Topbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+            <Topbar />
           </div>
           <div className="col-start-2 row-start-2 flex h-full flex-col gap-8 overflow-y-auto overflow-x-hidden rounded-br border-x border-b border-primary p-2">
-            <ChallengeList searchQuery={searchQuery} />
+            <ChallengeList />
           </div>
         </div>
       </div>

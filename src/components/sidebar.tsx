@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useStore } from "../store";
+
 const categories = [
   "Hooks",
   "State",
@@ -27,6 +29,29 @@ export type Difficulty = (typeof difficulties)[number];
 // migrate search query to zustand
 
 export default function Sidebar() {
+  const {
+    categoryFilters,
+    difficultyFilters,
+    setCategoryFilters,
+    setDifficultyFilters,
+  } = useStore();
+
+  const handleFilterClick = <T extends Category | Difficulty>({
+    filter,
+    prevFilters,
+    setFilters,
+  }: {
+    filter: T;
+    prevFilters: T[];
+    setFilters: (filters: T[]) => void;
+  }) => {
+    if (prevFilters.includes(filter)) {
+      setFilters(prevFilters.filter((f) => f !== filter));
+    } else {
+      setFilters([...prevFilters, filter]);
+    }
+  };
+
   return (
     <>
       <div className="h-full border-primary p-2 lg:block lg:rounded-l lg:border-y lg:border-l">
@@ -35,7 +60,18 @@ export default function Sidebar() {
           <ul className="flex flex-col gap-1 p-1">
             {categories.map((category) => (
               <li key={category}>
-                <button className="btn-outline btn-primary btn-sm btn h-max text-xs">
+                <button
+                  className={`${
+                    !categoryFilters.includes(category) && "btn-outline"
+                  } btn-primary btn-sm btn h-max text-xs`}
+                  onClick={() => {
+                    handleFilterClick({
+                      filter: category,
+                      prevFilters: categoryFilters,
+                      setFilters: setCategoryFilters,
+                    });
+                  }}
+                >
                   {category}
                 </button>
               </li>
@@ -46,17 +82,50 @@ export default function Sidebar() {
           <div className="text-md font-bold">Difficulty</div>
           <ul className="flex flex-col gap-1">
             <li>
-              <button className="btn-outline btn-success btn-sm btn text-xs">
+              <button
+                className={`btn-success btn-sm btn text-xs ${
+                  !difficultyFilters.includes("easy") && "btn-outline"
+                }`}
+                onClick={() =>
+                  handleFilterClick({
+                    filter: "easy",
+                    prevFilters: difficultyFilters,
+                    setFilters: setDifficultyFilters,
+                  })
+                }
+              >
                 Easy
               </button>
             </li>
             <li>
-              <button className="btn-outline btn-warning btn-sm btn text-xs">
+              <button
+                className={`btn-warning btn-sm btn text-xs ${
+                  !difficultyFilters.includes("medium") && "btn-outline"
+                }`}
+                onClick={() =>
+                  handleFilterClick({
+                    filter: "medium",
+                    prevFilters: difficultyFilters,
+                    setFilters: setDifficultyFilters,
+                  })
+                }
+              >
                 Medium
               </button>
             </li>
             <li>
-              <button className="btn-outline btn-error btn-sm btn text-xs">
+              <button
+                className={`btn-error btn-sm btn text-xs ${
+                  !difficultyFilters.includes("hard") && "btn-outline"
+                }`}
+                onClick={() =>
+                  handleFilterClick({
+                    filter: "hard",
+                    prevFilters: difficultyFilters,
+                    setFilters: setDifficultyFilters,
+                  })
+                }
+              >
                 Hard
               </button>
             </li>

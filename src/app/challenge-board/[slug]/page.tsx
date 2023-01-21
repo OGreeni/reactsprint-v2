@@ -1,6 +1,8 @@
 import React from "react";
 
 import Heading from "@/components/heading";
+import LinkWithFilter from "@/components/link-with-filter";
+import type { Category, Difficulty } from "@/components/sidebar";
 import WrappedSandpack from "@/components/wrappers/sandpack-wrapper";
 import { formatCode } from "@/utils/helpers";
 
@@ -11,6 +13,19 @@ interface Props {
 }
 
 // TODO: fetch data from Contentful API and add react-query
+// TODO: add hints and solution
+// authentication with auth zero
+
+const getDifficultyTextColor = (difficulty: Difficulty) => {
+  switch (difficulty) {
+    case "easy":
+      return "text-success";
+    case "medium":
+      return "text-warning";
+    case "hard":
+      return "text-error";
+  }
+};
 
 const mockChallenge = {
   title: "Challenge 1",
@@ -18,7 +33,7 @@ const mockChallenge = {
   index: 1,
   objective: "Create a simple website",
   difficulty: "easy",
-  tags: ["html", "css", "javascript"],
+  categories: ["html", "css", "javascript"],
   code: formatCode(
     `import React from "react";
 
@@ -30,7 +45,6 @@ const mockChallenge = {
             );
         }`
   ),
-  rating: 4.5,
   hints: [
     "Use the `<h1>` tag to create a heading",
     "Use the `<div>` tag to create a container",
@@ -48,8 +62,42 @@ export default function Page({ params: { slug } }: Props) {
         and rating stars
     */}
       <Heading className="text-center">{slug}</Heading>
-      <div>Challenge Details</div>
-      <div className="mockup-window border border-base-300">
+      <div className="mockup-window my-10 grow border border-base-300 text-lg shadow-md">
+        <div className="p-3">
+          <ul>
+            <li>
+              <p>
+                <span className="font-bold">Objective:</span>{" "}
+                {mockChallenge.objective}
+              </p>
+            </li>
+            <li>
+              <p>
+                <span className="font-bold">Difficulty:</span>{" "}
+                <span
+                  className={`font-bold ${getDifficultyTextColor(
+                    mockChallenge.difficulty as Difficulty
+                  )}`}
+                >
+                  {mockChallenge.difficulty.toUpperCase()}
+                </span>
+              </p>
+            </li>
+            <li>
+              <p>
+                <span className="font-bold">Categories:</span>{" "}
+                {mockChallenge.categories.map((category) => (
+                  <>
+                    <LinkWithFilter
+                      key={category}
+                      value={category as Category}
+                    />{" "}
+                  </>
+                ))}
+              </p>
+            </li>
+          </ul>
+        </div>
         <WrappedSandpack
           template="react"
           options={{
@@ -57,6 +105,7 @@ export default function Page({ params: { slug } }: Props) {
               "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp",
             ],
             showTabs: true,
+            editorHeight: "50vh",
           }}
           files={{
             "/App.js": mockChallenge.code,
