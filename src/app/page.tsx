@@ -2,8 +2,8 @@ import { Inter } from "@next/font/google";
 import { createClient } from "contentful";
 import Link from "next/link";
 
+import animatedShapes from "@/animations/animated-shapes.json";
 import LottieWrapper from "@/components/wrappers/lottie-wrapper";
-import animatedShapes from "@/json/animated-shapes.json";
 
 const inter = Inter({ subsets: ["latin"] });
 

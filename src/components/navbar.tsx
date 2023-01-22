@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-import animatedShapes from "@/json/animated-shapes.json";
+import animatedShapes from "@/animations/animated-shapes.json";
 
 import LottieWrapper from "./wrappers/lottie-wrapper";
 

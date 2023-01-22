@@ -1,9 +1,11 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { z } from "zod";
 
 import Heading from "@/components/heading";
 import LinkWithFilter from "@/components/link-with-filter";
 import type { Category, Difficulty } from "@/components/sidebar";
-import WrappedSandpack from "@/components/wrappers/sandpack-wrapper";
+import SandpackWrapper from "@/components/wrappers/sandpack-wrapper";
 import { formatCode } from "@/utils/helpers";
 
 interface Props {
@@ -27,6 +29,26 @@ const getDifficultyTextColor = (difficulty: Difficulty) => {
   }
 };
 
+const challengeSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  index: z.number(),
+  objective: z.string(),
+  difficulty: z.string(),
+  categories: z.array(z.string()),
+  code: z.object({
+    js: z.object({
+      starter: z.string().url(),
+      solution: z.string().url(),
+    }),
+    ts: z.object({
+      starter: z.string().url(),
+      solution: z.string().url(),
+    }),
+  }),
+  hints: z.array(z.string()),
+});
+
 const mockChallenge = {
   title: "Challenge 1",
   slug: "challenge-1",
@@ -34,24 +56,69 @@ const mockChallenge = {
   objective: "Create a simple website",
   difficulty: "easy",
   categories: ["html", "css", "javascript"],
-  code: formatCode(
-    `import React from "react";
-
-        export default function App() {
-            return (
-                <div>
-                    <h1>Hello World!</h1>
-                </div>
-            );
-        }`
-  ),
+  code: {
+    js: {
+      starter: formatCode(
+        `import React from "react";
+    
+            export default function App() {
+                return (
+                    <div>
+                        <h1>Hello World!</h1>
+                    </div>
+                );
+            }`
+      ),
+      solution: formatCode(
+        `import React from "react";
+    
+            export default function App() {
+                return (
+                    <div>
+                        <h1>Hello World!</h1>
+                    </div>
+                );
+            }`
+      ),
+    },
+    ts: {
+      starter: formatCode(
+        `import React from "react";
+    
+            export default function App() {
+                return (
+                    <div>
+                        <h1>Hello World!</h1>
+                    </div>
+                );
+            }`
+      ),
+      solution: formatCode(
+        `import React from "react";
+    
+            export default function App() {
+                return (
+                    <div>
+                        <h1>Hello World!</h1>
+                    </div>
+                );
+            }`
+      ),
+    },
+  },
   hints: [
     "Use the `<h1>` tag to create a heading",
     "Use the `<div>` tag to create a container",
   ],
 };
 
+type Challenge = z.infer<typeof challengeSchema>;
+
 export default function Page({ params: { slug } }: Props) {
+  const [activeTab, setActiveTab] = useState<"js" | "ts">("js");
+
+  // const challenge = challengeSchema.parse(mockChallenge);
+
   return (
     <div className="mx-auto max-w-7xl p-2">
       {/* 
@@ -97,8 +164,22 @@ export default function Page({ params: { slug } }: Props) {
               </p>
             </li>
           </ul>
+          <div className="mt-10 flex gap-4">
+            <button
+              className="btn-primary btn"
+              onClick={() => setActiveTab("js")}
+            >
+              JavaScript
+            </button>
+            <button
+              className="btn-outline btn-secondary btn"
+              onClick={() => setActiveTab("ts")}
+            >
+              TypeScript
+            </button>
+          </div>
         </div>
-        <WrappedSandpack
+        {/* <SandpackWrapper
           template="react"
           options={{
             externalResources: [
@@ -108,9 +189,9 @@ export default function Page({ params: { slug } }: Props) {
             editorHeight: "50vh",
           }}
           files={{
-            "/App.js": mockChallenge.code,
+            "/App.js": mockChallenge.code.js.starter,
           }}
-        />
+        /> */}
       </div>
     </div>
   );
