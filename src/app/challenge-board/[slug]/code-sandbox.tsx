@@ -2,10 +2,13 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import React, { useState } from "react";
 
+import sampleChallenge from "@/data/sample-challenge.json";
+
 import SolutionTimer from "./solution-timer";
 
 export default function CodeSandbox() {
   const [activeLanguage, setActiveLanguage] = useState<"js" | "ts">("js");
+  const [showSolution, setShowSolution] = useState(false);
 
   return (
     <div className="flex w-full flex-col">
@@ -28,7 +31,10 @@ export default function CodeSandbox() {
             TypeScript
           </button>
         </div>
-        <SolutionTimer />
+        <SolutionTimer
+          showSolution={showSolution}
+          onShowSolution={() => setShowSolution(!showSolution)}
+        />
       </div>
       <div className="overflow-hidden rounded-md shadow-md">
         <Sandpack
@@ -47,12 +53,14 @@ export default function CodeSandbox() {
           files={
             activeLanguage === "js"
               ? {
-                  "/App.js":
-                    "import React from 'react';\n\nexport default function App() {\n  return <div>Hello World</div>;\n}",
+                  "/App.js": showSolution
+                    ? sampleChallenge.code.js.solution
+                    : sampleChallenge.code.js.starter,
                 }
               : {
-                  "/App.tsx":
-                    "import React from 'react';\n\nexport default function App() {\n  return <div>Hello World</div>;\n}",
+                  "/App.tsx": showSolution
+                    ? sampleChallenge.code.ts.solution
+                    : sampleChallenge.code.ts.starter,
                 }
           }
         />

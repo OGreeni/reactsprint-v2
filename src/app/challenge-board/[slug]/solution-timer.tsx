@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 
-export default function SolutionTimer() {
+interface Props {
+  showSolution: boolean;
+  onShowSolution: () => void;
+}
+
+export default function SolutionTimer({ showSolution, onShowSolution }: Props) {
   const [seconds, setSeconds] = React.useState(0);
   const [minutes, setMinutes] = React.useState(0);
 
@@ -18,7 +23,14 @@ export default function SolutionTimer() {
 
   return (
     <div className="flex items-center gap-2">
-      <button className="btn-warning btn-sm btn">View Solution</button>
+      <button
+        className={`btn-accent btn-sm btn ${
+          !showSolution ? "btn-outline" : ""
+        }`}
+        onClick={() => onShowSolution()}
+      >
+        {showSolution ? "Hide" : "View"} Solution
+      </button>
       <span className="countdown font-mono text-2xl">
         {/* @ts-ignore */}
         <span style={{ "--value": minutes }}></span>:{/* @ts-ignore */}
