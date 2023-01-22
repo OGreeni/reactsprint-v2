@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 import { z } from "zod";
 
+import ChallengeHints from "@/components/challenge-hints";
 import Heading from "@/components/heading";
 import LinkWithFilter from "@/components/link-with-filter";
 import type { Category, Difficulty } from "@/components/sidebar";
 import sampleChallenge from "@/data/sample-challenge.json";
 import { formatCode } from "@/utils/helpers";
-
 interface Props {
   params: {
     slug: string;
@@ -106,6 +106,7 @@ export default function Page({ params: { slug } }: Props) {
               </p>
             </li>
           </ul>
+          <ChallengeHints />
           <div className="mt-10 flex gap-4">
             <button
               className="btn-primary btn"

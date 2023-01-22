@@ -16,7 +16,7 @@
     }
   },
   "hints": [
-    "Use the <h1> tag to create a heading",
-    "Use the <div> tag to create a division"
+    "Use the `<h1>` tag to create a heading",
+    "Use the `<div>` tag to create a division"
   ]
 }
