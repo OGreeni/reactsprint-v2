@@ -45,7 +45,7 @@ export default function Page() {
         onSubmit={handleSubmit((data) => console.log(data))}
         className="mt-10"
       >
-        <div className="flex flex-row flex-wrap items-center justify-center gap-4">
+        <div className="mx-auto flex max-w-5xl flex-row flex-wrap items-center justify-center gap-4">
           <input
             {...register("title")}
             placeholder="Challenge title"
@@ -98,9 +98,9 @@ export default function Page() {
               <option disabled selected value="">
                 Challenge Difficulty
               </option>
-              <option>Easy</option>
-              <option>Medium</option>
-              <option>Hard</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
             </select>
             <div
               className="tooltip tooltip-primary"

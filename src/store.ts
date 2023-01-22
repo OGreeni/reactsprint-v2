@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 import type { Category, Difficulty } from "./components/sidebar";
 
@@ -26,7 +26,7 @@ export const useStore = create(
     }),
     {
       name: "filters-storage",
-      getStorage: () => sessionStorage,
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

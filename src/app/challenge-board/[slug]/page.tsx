@@ -5,7 +5,7 @@ import { z } from "zod";
 import Heading from "@/components/heading";
 import LinkWithFilter from "@/components/link-with-filter";
 import type { Category, Difficulty } from "@/components/sidebar";
-import SandpackWrapper from "@/components/wrappers/sandpack-wrapper";
+import sampleChallenge from "@/data/sample-challenge.json";
 import { formatCode } from "@/utils/helpers";
 
 interface Props {
@@ -38,86 +38,28 @@ const challengeSchema = z.object({
   categories: z.array(z.string()),
   code: z.object({
     js: z.object({
-      starter: z.string().url(),
-      solution: z.string().url(),
+      starter: z.string(),
+      solution: z.string(),
     }),
     ts: z.object({
-      starter: z.string().url(),
-      solution: z.string().url(),
+      starter: z.string(),
+      solution: z.string(),
     }),
   }),
   hints: z.array(z.string()),
 });
 
-const mockChallenge = {
-  title: "Challenge 1",
-  slug: "challenge-1",
-  index: 1,
-  objective: "Create a simple website",
-  difficulty: "easy",
-  categories: ["html", "css", "javascript"],
-  code: {
-    js: {
-      starter: formatCode(
-        `import React from "react";
-    
-            export default function App() {
-                return (
-                    <div>
-                        <h1>Hello World!</h1>
-                    </div>
-                );
-            }`
-      ),
-      solution: formatCode(
-        `import React from "react";
-    
-            export default function App() {
-                return (
-                    <div>
-                        <h1>Hello World!</h1>
-                    </div>
-                );
-            }`
-      ),
-    },
-    ts: {
-      starter: formatCode(
-        `import React from "react";
-    
-            export default function App() {
-                return (
-                    <div>
-                        <h1>Hello World!</h1>
-                    </div>
-                );
-            }`
-      ),
-      solution: formatCode(
-        `import React from "react";
-    
-            export default function App() {
-                return (
-                    <div>
-                        <h1>Hello World!</h1>
-                    </div>
-                );
-            }`
-      ),
-    },
-  },
-  hints: [
-    "Use the `<h1>` tag to create a heading",
-    "Use the `<div>` tag to create a container",
-  ],
-};
+sampleChallenge.code.js.starter = formatCode(sampleChallenge.code.js.starter);
+sampleChallenge.code.js.solution = formatCode(sampleChallenge.code.js.solution);
+sampleChallenge.code.ts.starter = formatCode(sampleChallenge.code.ts.starter);
+sampleChallenge.code.ts.solution = formatCode(sampleChallenge.code.ts.solution);
 
 type Challenge = z.infer<typeof challengeSchema>;
 
 export default function Page({ params: { slug } }: Props) {
   const [activeTab, setActiveTab] = useState<"js" | "ts">("js");
 
-  // const challenge = challengeSchema.parse(mockChallenge);
+  const challenge = challengeSchema.parse(sampleChallenge);
 
   return (
     <div className="mx-auto max-w-7xl p-2">
@@ -135,7 +77,7 @@ export default function Page({ params: { slug } }: Props) {
             <li>
               <p>
                 <span className="font-bold">Objective:</span>{" "}
-                {mockChallenge.objective}
+                {challenge.objective}
               </p>
             </li>
             <li>
@@ -143,17 +85,17 @@ export default function Page({ params: { slug } }: Props) {
                 <span className="font-bold">Difficulty:</span>{" "}
                 <span
                   className={`font-bold ${getDifficultyTextColor(
-                    mockChallenge.difficulty as Difficulty
+                    challenge.difficulty as Difficulty
                   )}`}
                 >
-                  {mockChallenge.difficulty.toUpperCase()}
+                  {challenge.difficulty.toUpperCase()}
                 </span>
               </p>
             </li>
             <li>
               <p>
                 <span className="font-bold">Categories:</span>{" "}
-                {mockChallenge.categories.map((category) => (
+                {challenge.categories.map((category) => (
                   <>
                     <LinkWithFilter
                       key={category}

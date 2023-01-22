@@ -9,7 +9,7 @@ interface Props {
   index: number;
   objective: string;
   difficulty: Difficulty;
-  tags: Category[];
+  categories: Category[];
 }
 
 export default function ChallengePreview({
@@ -17,7 +17,7 @@ export default function ChallengePreview({
   index,
   objective,
   difficulty,
-  tags,
+  categories,
 }: Props) {
   let difficultyColor = "";
   if (difficulty === "easy") {
@@ -57,12 +57,12 @@ export default function ChallengePreview({
           <span className={`${difficultyColor} uppercase`}>{difficulty}</span>
         </div>
         <div className="inline">
-          <span className="font-bold">Tags:</span>{" "}
+          <span className="font-bold">Categories:</span>{" "}
           <ul className="inline">
-            {tags.map((tag) => (
-              <li className="inline" key={tag}>
+            {categories.map((category) => (
+              <li className="inline" key={category}>
                 <Link href="/" className="link-primary">
-                  #{tag}{" "}
+                  #{category}{" "}
                 </Link>
               </li>
             ))}

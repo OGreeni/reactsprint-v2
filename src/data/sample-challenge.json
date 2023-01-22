@@ -1,0 +1,22 @@
+{
+  "title": "Challenge 1",
+  "slug": "challenge-1",
+  "index": 1,
+  "objective": "Create a simple website",
+  "difficulty": "easy",
+  "categories": ["html", "css", "javascript"],
+  "code": {
+    "js": {
+      "starter": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
+      "solution": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}"
+    },
+    "ts": {
+      "starter": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
+      "solution": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}"
+    }
+  },
+  "hints": [
+    "Use the <h1> tag to create a heading",
+    "Use the <div> tag to create a division"
+  ]
+}
