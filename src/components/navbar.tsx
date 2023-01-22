@@ -1,3 +1,6 @@
+"use client";
+import { UserButton } from "@clerk/nextjs";
+import { SignedOut } from "@clerk/nextjs/app-beta/client";
 import Link from "next/link";
 import React from "react";
 
@@ -7,7 +10,7 @@ import LottieWrapper from "./wrappers/lottie-wrapper";
 
 export default function Navbar() {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar flex justify-between bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn-ghost btn lg:hidden">
@@ -38,9 +41,11 @@ export default function Navbar() {
                 Contribute
               </Link>
             </li>
-            <li>
-              <Link href="/login">Login</Link>
-            </li>
+            <SignedOut>
+              <li>
+                <Link href="/login">Login</Link>
+              </li>
+            </SignedOut>
           </ul>
         </div>
         <Link href="/" className="btn-ghost btn text-xl normal-case">
@@ -64,10 +69,13 @@ export default function Navbar() {
             <Link href="/contribute">Contribute</Link>
           </li>
           <li>
-            <Link href="/login">Login</Link>
+            <SignedOut>
+              <Link href="/login">Login</Link>
+            </SignedOut>
           </li>
         </ul>
       </div>
+      <UserButton />
     </div>
   );
 }
