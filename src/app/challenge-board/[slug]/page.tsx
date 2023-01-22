@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import { z } from "zod";
 
 import ChallengeHints from "@/components/challenge-hints";
@@ -8,15 +7,14 @@ import LinkWithFilter from "@/components/link-with-filter";
 import type { Category, Difficulty } from "@/components/sidebar";
 import sampleChallenge from "@/data/sample-challenge.json";
 import { formatCode } from "@/utils/helpers";
+
+import CodeSandbox from "./code-sandbox";
+
 interface Props {
   params: {
     slug: string;
   };
 }
-
-// TODO: fetch data from Contentful API and add react-query
-// TODO: add hints and solution
-// authentication with auth zero
 
 const getDifficultyTextColor = (difficulty: Difficulty) => {
   switch (difficulty) {
@@ -57,8 +55,6 @@ sampleChallenge.code.ts.solution = formatCode(sampleChallenge.code.ts.solution);
 type Challenge = z.infer<typeof challengeSchema>;
 
 export default function Page({ params: { slug } }: Props) {
-  const [activeTab, setActiveTab] = useState<"js" | "ts">("js");
-
   const challenge = challengeSchema.parse(sampleChallenge);
 
   return (
@@ -107,34 +103,10 @@ export default function Page({ params: { slug } }: Props) {
             </li>
           </ul>
           <ChallengeHints />
-          <div className="mt-10 flex gap-4">
-            <button
-              className="btn-primary btn"
-              onClick={() => setActiveTab("js")}
-            >
-              JavaScript
-            </button>
-            <button
-              className="btn-outline btn-secondary btn"
-              onClick={() => setActiveTab("ts")}
-            >
-              TypeScript
-            </button>
+          <div className="mt-4">
+            <CodeSandbox />
           </div>
         </div>
-        {/* <SandpackWrapper
-          template="react"
-          options={{
-            externalResources: [
-              "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp",
-            ],
-            showTabs: true,
-            editorHeight: "50vh",
-          }}
-          files={{
-            "/App.js": mockChallenge.code.js.starter,
-          }}
-        /> */}
       </div>
     </div>
   );
