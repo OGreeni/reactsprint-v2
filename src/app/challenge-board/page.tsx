@@ -1,11 +1,13 @@
 "use client";
-import Link from "next/link";
+
 import React, { useState } from "react";
 
 import ChallengeList from "@/components/challenge-list";
 import Heading from "@/components/heading";
 import Sidebar from "@/components/sidebar";
 import Topbar from "@/components/topbar";
+
+// currently this is a client component, and I cannot fetch data in the ChallengeList component. Refactor this to a server component and fetch data in the ChallengeList component.
 
 export default function Page() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -47,6 +49,7 @@ export default function Page() {
             <Topbar />
           </div>
           <div className="col-start-2 row-start-2 flex h-full flex-col gap-8 overflow-y-auto overflow-x-hidden rounded-br border-x border-b border-primary p-2">
+            {/* @ts-ignore */}
             <ChallengeList />
           </div>
         </div>

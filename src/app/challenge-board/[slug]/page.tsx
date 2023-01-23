@@ -6,6 +6,7 @@ import Heading from "@/components/heading";
 import LinkWithFilter from "@/components/link-with-filter";
 import type { Category, Difficulty } from "@/components/sidebar";
 import sampleChallenge from "@/data/sample-challenge.json";
+import { getEntryByFilter } from "@/service/sdk";
 import { formatCode } from "@/utils/helpers";
 
 import CodeSandbox from "./code-sandbox";
@@ -27,39 +28,21 @@ const getDifficultyTextColor = (difficulty: Difficulty) => {
   }
 };
 
-const challengeSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  index: z.number(),
-  objective: z.string(),
-  difficulty: z.string(),
-  categories: z.array(z.string()),
-  jsStarter: z.string(),
-  jsSolution: z.string(),
-  tsStarter: z.string(),
-  tsSolution: z.string(),
-  hints: z.array(z.string()),
-});
+// sampleChallenge.jsStarter = formatCode(sampleChallenge.jsStarter);
+// sampleChallenge.jsSolution = formatCode(sampleChallenge.jsSolution);
+// sampleChallenge.tsStarter = formatCode(sampleChallenge.tsStarter);
+// sampleChallenge.tsSolution = formatCode(sampleChallenge.tsSolution);
 
-sampleChallenge.jsStarter = formatCode(sampleChallenge.jsStarter);
-sampleChallenge.jsSolution = formatCode(sampleChallenge.jsSolution);
-sampleChallenge.tsStarter = formatCode(sampleChallenge.tsStarter);
-sampleChallenge.tsSolution = formatCode(sampleChallenge.tsSolution);
-
-type Challenge = z.infer<typeof challengeSchema>;
-
-export default function Page({ params: { slug } }: Props) {
-  const challenge = challengeSchema.parse(sampleChallenge);
+export default async function Page({ params: { slug } }: Props) {
+  const challenge = await getEntryByFilter({
+    contentType: "challenge",
+    filterType: "slug",
+    filterValue: slug,
+  });
+  console.log(challenge);
 
   return (
     <div className="mx-auto max-w-7xl p-2">
-      {/* 
-        Todo: add a sidebar with the challenge details
-        and a button to reveal the solution
-        and a button to reveal the hints
-        and a button to mark the challenge as complete
-        and rating stars
-    */}
       <Heading className="text-center">{slug}</Heading>
       <div className="mockup-window my-10 grow border border-base-300 text-lg shadow-md">
         <div className="p-3">

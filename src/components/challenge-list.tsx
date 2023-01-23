@@ -3,6 +3,7 @@ import React from "react";
 
 import sampleChalenge from "@/data/sample-challenge.json";
 
+// import { getEntries } from "@/service/sdk";
 import { useStore } from "../store";
 import ChallengePreview from "./challenge-preview";
 

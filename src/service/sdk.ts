@@ -34,8 +34,36 @@ export const getEntries = async ({ contentType }: { contentType: string }) => {
   });
 };
 
-export const getEntry = async ({ id }: { id: string }) => {
+export const getEntryById = async ({ id }: { id: string }) => {
   const entry = await client.getEntry(id);
+  const document = challengeDocumentSchema.parse(entry.fields);
+
+  return {
+    id: entry.sys.id,
+    ...document,
+  };
+};
+
+export const getEntryByFilter = async ({
+  contentType,
+  filterType,
+  filterValue,
+}: {
+  contentType: string;
+  filterType: string;
+  filterValue: string;
+}) => {
+  const filterQuery = "fields." + filterType;
+  const queryObject = {
+    content_type: contentType,
+    [filterQuery]: filterValue,
+  };
+
+  const entries = await client.getEntries(queryObject);
+
+  console.log(entries);
+
+  const entry = entries.items[0];
   const document = challengeDocumentSchema.parse(entry.fields);
 
   return {
