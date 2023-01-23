@@ -3,19 +3,10 @@ import Link from "next/link";
 
 import animatedShapes from "@/animations/animated-shapes.json";
 import LottieWrapper from "@/components/wrappers/lottie-wrapper";
-import { getEntries } from "@/service/sdk";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default async function Home() {
-  // const client = createClient({
-  //   space: process.env.CONTENTFUL_SPACE_ID as string,
-  //   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-  // });
-  const data = await getEntries({ contentType: "challenge" });
-
-  console.log(data[0].id);
-
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col-reverse lg:flex-row-reverse">

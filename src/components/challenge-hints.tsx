@@ -1,16 +1,17 @@
 "use client";
 import React, { useState } from "react";
 
-import sampleChallenge from "@/data/sample-challenge.json";
-
 // TODO: parse hints from markdown, preserve inline code
+interface Props {
+  hints: string[];
+}
 
-export default function ChallengeHints() {
+export default function ChallengeHints({ hints }: Props) {
   const [currentHint, setCurrentHint] = useState(0);
 
   return (
     <>
-      {sampleChallenge.hints.map((hint, index) => {
+      {hints.map((hint, index) => {
         if (index >= currentHint) return;
 
         return (
@@ -39,10 +40,10 @@ export default function ChallengeHints() {
       })}
       <button
         className={`btn-info btn-sm btn mt-2 ${
-          currentHint === sampleChallenge.hints.length ? "btn-disabled" : ""
+          currentHint === hints.length ? "btn-disabled" : ""
         }`}
         onClick={() => {
-          if (currentHint < sampleChallenge.hints.length) {
+          if (currentHint < hints.length) {
             setCurrentHint(currentHint + 1);
           }
         }}

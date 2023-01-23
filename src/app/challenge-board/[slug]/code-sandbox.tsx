@@ -2,11 +2,20 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
 import React, { useState } from "react";
 
-import sampleChallenge from "@/data/sample-challenge.json";
-
 import SolutionTimer from "./solution-timer";
 
-export default function CodeSandbox() {
+interface Props {
+  code: {
+    jsStarter: string;
+    jsSolution: string;
+    tsStarter: string;
+    tsSolution: string;
+  };
+}
+
+export default function CodeSandbox({
+  code: { jsStarter, jsSolution, tsStarter, tsSolution },
+}: Props) {
   const [activeLanguage, setActiveLanguage] = useState<"js" | "ts">("js");
   const [showSolution, setShowSolution] = useState(false);
 
@@ -31,9 +40,10 @@ export default function CodeSandbox() {
             TypeScript
           </button>
         </div>
+        {/* TODO: fix showSolution button not working */}
         <SolutionTimer
           showSolution={showSolution}
-          onShowSolution={() => setShowSolution(!showSolution)}
+          onShowSolution={setShowSolution}
         />
       </div>
       <div className="overflow-hidden rounded-md shadow-md">
@@ -53,14 +63,10 @@ export default function CodeSandbox() {
           files={
             activeLanguage === "js"
               ? {
-                  "/App.js": showSolution
-                    ? sampleChallenge.jsSolution
-                    : sampleChallenge.jsStarter,
+                  "/App.js": showSolution ? jsSolution : jsStarter,
                 }
               : {
-                  "/App.tsx": showSolution
-                    ? sampleChallenge.tsSolution
-                    : sampleChallenge.tsStarter,
+                  "/App.tsx": showSolution ? tsSolution : tsStarter,
                 }
           }
         />

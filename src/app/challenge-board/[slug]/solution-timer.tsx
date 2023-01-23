@@ -1,8 +1,9 @@
+"use client";
 import React, { useEffect } from "react";
 
 interface Props {
   showSolution: boolean;
-  onShowSolution: () => void;
+  onShowSolution: (state: boolean) => void;
 }
 
 export default function SolutionTimer({ showSolution, onShowSolution }: Props) {
@@ -55,7 +56,7 @@ export default function SolutionTimer({ showSolution, onShowSolution }: Props) {
         className={`btn-accent btn-sm btn ${
           !showSolution ? "btn-outline" : ""
         }`}
-        onClick={() => onShowSolution()}
+        onClick={() => onShowSolution(!showSolution)}
       >
         {showSolution ? "Hide" : "View"} Solution
       </button>

@@ -39,7 +39,6 @@ export default async function Page({ params: { slug } }: Props) {
     filterType: "slug",
     filterValue: slug,
   });
-  console.log(challenge);
 
   return (
     <div className="mx-auto max-w-7xl p-2">
@@ -73,15 +72,22 @@ export default async function Page({ params: { slug } }: Props) {
                     <LinkWithFilter
                       key={category}
                       value={category as Category}
-                    />{" "}
+                    />
                   </>
                 ))}
               </p>
             </li>
           </ul>
-          <ChallengeHints />
+          <ChallengeHints hints={challenge.hints} />
           <div className="mt-4">
-            <CodeSandbox />
+            <CodeSandbox
+              code={{
+                jsStarter: formatCode(challenge.jsStarter),
+                jsSolution: formatCode(challenge.jsSolution),
+                tsStarter: formatCode(challenge.tsStarter),
+                tsSolution: formatCode(challenge.tsSolution),
+              }}
+            />
           </div>
         </div>
       </div>
