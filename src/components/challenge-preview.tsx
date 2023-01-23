@@ -29,7 +29,7 @@ export default function ChallengePreview({
   }
 
   return (
-    <div className="card border shadow-md transition-all hover:scale-105 hover:opacity-80">
+    <div className="card border shadow-md transition-all hover:scale-[101%] hover:opacity-80">
       <div className="card-body">
         <h2 className="card-title">
           {index}. {title}{" "}
