@@ -54,13 +54,13 @@ export default function CodeSandbox() {
             activeLanguage === "js"
               ? {
                   "/App.js": showSolution
-                    ? sampleChallenge.code.js.solution
-                    : sampleChallenge.code.js.starter,
+                    ? sampleChallenge.jsSolution
+                    : sampleChallenge.jsStarter,
                 }
               : {
                   "/App.tsx": showSolution
-                    ? sampleChallenge.code.ts.solution
-                    : sampleChallenge.code.ts.starter,
+                    ? sampleChallenge.tsSolution
+                    : sampleChallenge.tsStarter,
                 }
           }
         />

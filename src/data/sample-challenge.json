@@ -6,10 +6,10 @@
   "explanation": "In this challenge, you will create a simple website with a heading and a division. The heading should say \"Hello World!\" and the division should be empty.",
   "difficulty": "easy",
   "categories": ["html", "css", "javascript"],
-  "jSstarter": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
-  "jSsolution": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
-  "tSstarter": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
-  "tSsolution": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
+  "jsStarter": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
+  "jsSolution": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
+  "tsStarter": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
+  "tsSolution": "import React from \"react\";\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Hello World!</h1>\n    </div>\n  );\n}",
   "hints": [
     "Use the `<h1>` tag to create a heading",
     "Use the `<div>` tag to create a division"

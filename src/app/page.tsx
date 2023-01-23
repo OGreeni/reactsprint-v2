@@ -1,21 +1,20 @@
 import { Inter } from "@next/font/google";
-import { createClient } from "contentful";
 import Link from "next/link";
 
 import animatedShapes from "@/animations/animated-shapes.json";
 import LottieWrapper from "@/components/wrappers/lottie-wrapper";
+import { getEntries } from "@/service/sdk";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default async function Home() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID as string,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
-  });
+  // const client = createClient({
+  //   space: process.env.CONTENTFUL_SPACE_ID as string,
+  //   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+  // });
+  const data = await getEntries({ contentType: "challenge" });
 
-  const response = await client.getEntries({ content_type: "challenge" });
-
-  console.log(response.items[0].fields);
+  console.log(data[0].id);
 
   return (
     <div className="hero min-h-screen bg-base-200">

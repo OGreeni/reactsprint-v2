@@ -34,23 +34,17 @@ const challengeSchema = z.object({
   objective: z.string(),
   difficulty: z.string(),
   categories: z.array(z.string()),
-  code: z.object({
-    js: z.object({
-      starter: z.string(),
-      solution: z.string(),
-    }),
-    ts: z.object({
-      starter: z.string(),
-      solution: z.string(),
-    }),
-  }),
+  jsStarter: z.string(),
+  jsSolution: z.string(),
+  tsStarter: z.string(),
+  tsSolution: z.string(),
   hints: z.array(z.string()),
 });
 
-sampleChallenge.code.js.starter = formatCode(sampleChallenge.code.js.starter);
-sampleChallenge.code.js.solution = formatCode(sampleChallenge.code.js.solution);
-sampleChallenge.code.ts.starter = formatCode(sampleChallenge.code.ts.starter);
-sampleChallenge.code.ts.solution = formatCode(sampleChallenge.code.ts.solution);
+sampleChallenge.jsStarter = formatCode(sampleChallenge.jsStarter);
+sampleChallenge.jsSolution = formatCode(sampleChallenge.jsSolution);
+sampleChallenge.tsStarter = formatCode(sampleChallenge.tsStarter);
+sampleChallenge.tsSolution = formatCode(sampleChallenge.tsSolution);
 
 type Challenge = z.infer<typeof challengeSchema>;
 
