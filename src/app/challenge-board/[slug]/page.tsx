@@ -4,8 +4,8 @@ import { z } from "zod";
 import ChallengeHints from "@/components/challenge-hints";
 import Heading from "@/components/heading";
 import LinkWithFilter from "@/components/link-with-filter";
-import type { Category, Difficulty } from "@/components/sidebar";
 import sampleChallenge from "@/data/sample-challenge.json";
+import { ChallengeDocument } from "@/service/sdk";
 import { getEntryByFilter } from "@/service/sdk";
 import { formatCode } from "@/utils/helpers";
 
@@ -17,7 +17,9 @@ interface Props {
   };
 }
 
-const getDifficultyTextColor = (difficulty: Difficulty) => {
+const getDifficultyTextColor = (
+  difficulty: ChallengeDocument["difficulty"]
+) => {
   switch (difficulty) {
     case "easy":
       return "text-success";
@@ -28,11 +30,6 @@ const getDifficultyTextColor = (difficulty: Difficulty) => {
   }
 };
 
-// sampleChallenge.jsStarter = formatCode(sampleChallenge.jsStarter);
-// sampleChallenge.jsSolution = formatCode(sampleChallenge.jsSolution);
-// sampleChallenge.tsStarter = formatCode(sampleChallenge.tsStarter);
-// sampleChallenge.tsSolution = formatCode(sampleChallenge.tsSolution);
-
 export default async function Page({ params: { slug } }: Props) {
   const challenge = await getEntryByFilter({
     contentType: "challenge",
@@ -42,7 +39,7 @@ export default async function Page({ params: { slug } }: Props) {
 
   return (
     <div className="mx-auto max-w-7xl p-2">
-      <Heading className="text-center">{slug}</Heading>
+      <Heading className="text-center">{challenge.title}</Heading>
       <div className="mockup-window my-10 grow border border-base-300 text-lg shadow-md">
         <div className="p-3">
           <ul>
@@ -57,7 +54,7 @@ export default async function Page({ params: { slug } }: Props) {
                 <span className="font-bold">Difficulty:</span>{" "}
                 <span
                   className={`font-bold ${getDifficultyTextColor(
-                    challenge.difficulty as Difficulty
+                    challenge.difficulty
                   )}`}
                 >
                   {challenge.difficulty.toUpperCase()}
@@ -69,10 +66,7 @@ export default async function Page({ params: { slug } }: Props) {
                 <span className="font-bold">Categories:</span>{" "}
                 {challenge.categories.map((category) => (
                   <>
-                    <LinkWithFilter
-                      key={category}
-                      value={category as Category}
-                    />
+                    <LinkWithFilter key={category} value={category} />{" "}
                   </>
                 ))}
               </p>
