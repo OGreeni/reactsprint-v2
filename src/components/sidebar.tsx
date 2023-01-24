@@ -1,6 +1,7 @@
 import React from "react";
 
 import { categories, difficulties } from "@/constants/challenges";
+import type { ChallengeDocument } from "@/service/sdk";
 
 import { useStore } from "../store";
 
@@ -15,9 +16,27 @@ export default function Sidebar() {
     setDifficultyFilters,
   } = useStore();
 
-  const handleFilterClick = <
-    T extends typeof categories | typeof difficulties
-  >({
+  // const handleFilterClick = <
+  //   T extends
+  //     | ChallengeDocument["categories"]
+  //     | ChallengeDocument["difficulty"][]
+  // >({
+  //   filter,
+  //   prevFilters,
+  //   setFilters,
+  // }: {
+  //   filter: T;
+  //   prevFilters: T[];
+  //   setFilters: (filters: T[]) => void;
+  // }) => {
+  //   if (prevFilters.includes(filter)) {
+  //     setFilters(prevFilters.filter((f) => f !== filter));
+  //   } else {
+  //     setFilters([...prevFilters, filter]);
+  //   }
+  // };
+
+  const handleFilterClick = <T extends any>({
     filter,
     prevFilters,
     setFilters,

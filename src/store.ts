@@ -1,7 +1,12 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-import type { Category, Difficulty } from "./components/sidebar";
+import type { ChallengeDocument } from "@/service/sdk";
+
+// import type { Category, Difficulty } from "./components/sidebar";
+
+type Category = ChallengeDocument["categories"][number];
+type Difficulty = ChallengeDocument["difficulty"];
 
 type State = {
   searchQuery: string;

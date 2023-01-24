@@ -2,11 +2,12 @@
 import Link from "next/link";
 import React from "react";
 
+import type { ChallengeDocument } from "@/service/sdk";
+
 import { useStore } from "../store";
-import type { Category } from "./sidebar";
 
 interface Props {
-  value: Category;
+  value: ChallengeDocument["categories"][number];
 }
 
 export default function LinkWithFilter({ value }: Props) {
