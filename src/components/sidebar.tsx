@@ -1,29 +1,8 @@
 import React from "react";
 
+import { categories, difficulties } from "@/constants/challenges";
+
 import { useStore } from "../store";
-
-const categories = [
-  "Hooks",
-  "State",
-  "Props",
-  "Event Handling",
-  "Effects",
-  "Memo",
-  "Debugging",
-  "Refactoring",
-  "Optimization",
-  "Forms",
-  "Pure Components",
-  "Context",
-  "Refs",
-  "Error Boundaries",
-  "Suspense",
-] as const;
-
-const difficulties = ["easy", "medium", "hard"] as const;
-
-export type Category = (typeof categories)[number];
-export type Difficulty = (typeof difficulties)[number];
 
 // TODO: zustand to synchronize clicked filters with the challenge board
 // migrate search query to zustand
@@ -36,7 +15,9 @@ export default function Sidebar() {
     setDifficultyFilters,
   } = useStore();
 
-  const handleFilterClick = <T extends Category | Difficulty>({
+  const handleFilterClick = <
+    T extends typeof categories | typeof difficulties
+  >({
     filter,
     prevFilters,
     setFilters,

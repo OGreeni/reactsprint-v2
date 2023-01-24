@@ -1,20 +1,17 @@
 import Link from "next/link";
 import React from "react";
 
-import type { Category } from "@/components/sidebar";
-import type { Difficulty } from "@/components/sidebar";
+import type { ChallengeDocument } from "@/service/sdk";
 
 interface Props {
   title: string;
-  index: number;
   objective: string;
-  difficulty: Difficulty;
-  categories: Category[];
+  difficulty: ChallengeDocument["difficulty"];
+  categories: ChallengeDocument["categories"];
 }
 
 export default function ChallengePreview({
   title,
-  index,
   objective,
   difficulty,
   categories,
@@ -32,7 +29,7 @@ export default function ChallengePreview({
     <div className="card border shadow-md transition-all hover:scale-[101%] hover:opacity-80">
       <div className="card-body">
         <h2 className="card-title">
-          {index}. {title}{" "}
+          {title}{" "}
           <span className="text-primary">
             <svg
               fill="currentColor"

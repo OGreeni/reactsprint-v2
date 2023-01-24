@@ -1,20 +1,23 @@
 import Link from "next/link";
 import React from "react";
 
-import sampleChalenge from "@/data/sample-challenge.json";
+import { ChallengeDocument } from "@/service/sdk";
 
-// import { getEntries } from "@/service/sdk";
 import { useStore } from "../store";
 import ChallengePreview from "./challenge-preview";
 
-const sampleChallengeArray = new Array(5).fill(sampleChalenge);
+interface ChallengeData extends ChallengeDocument {
+  id: string;
+}
 
-// TODO: add react-query + fetch data from Contentful API
+interface Props {
+  challenges: ChallengeData[];
+}
 
-export default function ChallengeList() {
+export default function ChallengeList({ challenges }: Props) {
   const { searchQuery, categoryFilters, difficultyFilters } = useStore();
 
-  const filteredChallenges = sampleChallengeArray.filter((challenge) => {
+  const filteredChallenges = challenges.filter((challenge) => {
     return (
       challenge.title.toLowerCase().includes(
         searchQuery
@@ -32,7 +35,7 @@ export default function ChallengeList() {
   return (
     <>
       {filteredChallenges.map((challenge) => (
-        <Link href={`challenge-board/${challenge.slug}`} key={challenge.index}>
+        <Link href={`challenge-board/${challenge.slug}`} key={challenge.id}>
           <ChallengePreview {...challenge} />
         </Link>
       ))}

@@ -1,18 +1,22 @@
 import { createClient } from "contentful";
-import { z } from "zod";
+import { literal, z } from "zod";
+
+import { categories, difficulties } from "@/constants/challenges";
 
 const challengeDocumentSchema = z.object({
   title: z.string(),
   slug: z.string(),
   objective: z.string(),
-  difficulty: z.string(),
-  categories: z.array(z.string()),
+  difficulty: z.enum(difficulties),
+  categories: z.array(z.enum(categories)),
   jsStarter: z.string(),
   jsSolution: z.string(),
   tsStarter: z.string(),
   tsSolution: z.string(),
   hints: z.array(z.string()),
 });
+
+export type ChallengeDocument = z.infer<typeof challengeDocumentSchema>;
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -60,8 +64,6 @@ export const getEntryByFilter = async ({
   };
 
   const entries = await client.getEntries(queryObject);
-
-  console.log(entries);
 
   const entry = entries.items[0];
   const document = challengeDocumentSchema.parse(entry.fields);
