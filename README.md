@@ -7,6 +7,7 @@ Welcome to ReactSprint, an interactive learning platform for [React.js](https://
 - A wide range of challenges designed to be practical and concise
 - A user-friendly Challenge Board for easy browsing and filtering of challenges by difficulty and category (currently available categories are hooks, state, props, event handling, effects, memo, debugging, refactoring, optimization, forms, pure components, context, refs, error boundaries, and suspense)
 - A built-in challenge editor, powered by [Sandpack](https://codesandbox.io/s/github/codesandbox/sandpack/tree/master/examples/react), allowing you to spin up a new challenge environment in seconds
+- TypeScript support (including solutions)
 - Includes a CDN import of [TailwindCSS](https://tailwindcss.com/), so you can use Tailwind classes to style your components as you see fit
 - Free and open source
 
