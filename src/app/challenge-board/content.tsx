@@ -6,7 +6,7 @@ import ChallengeList from "@/components/challenge-list";
 import Heading from "@/components/heading";
 import Sidebar from "@/components/sidebar";
 import Topbar from "@/components/topbar";
-import type { ChallengeDocument } from "@/service/sdk";
+import type { ChallengeDocument } from "@/lib/contentful";
 
 interface ChallengeData extends ChallengeDocument {
   id: string;

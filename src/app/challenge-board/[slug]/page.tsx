@@ -4,8 +4,8 @@ import { z } from "zod";
 import ChallengeHints from "@/components/challenge-hints";
 import Heading from "@/components/heading";
 import LinkWithFilter from "@/components/link-with-filter";
-import { ChallengeDocument, getEntries } from "@/service/sdk";
-import { getEntryByFilter } from "@/service/sdk";
+import { ChallengeDocument, getEntries } from "@/lib/contentful";
+import { getEntryByFilter } from "@/lib/contentful";
 import { formatCode } from "@/utils/helpers";
 
 import CodeSandbox from "./code-sandbox";

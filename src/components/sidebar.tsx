@@ -1,7 +1,7 @@
 import React from "react";
 
-import { categories, difficulties } from "@/constants/challenges";
-import type { ChallengeDocument } from "@/service/sdk";
+import { categories, difficulties } from "@/constants/challenge-options";
+import type { ChallengeDocument } from "@/lib/contentful";
 
 import { useStore } from "../store";
 

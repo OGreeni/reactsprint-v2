@@ -10,17 +10,17 @@ export const formatCode = (code: string) => {
   return formattedCode;
 };
 
-// function that preserves inline code delimited with backticks
-// export const parseCodeString = (code: string) => {
-//   const parsedCodeString = code
-//     .split(``)
-//     .map((substring, index) => {
-//       if (index % 2 === 1) {
-//         return <code key={index}>{substring}</code>;
-//       }
-//       return substring;
-//     })
-//     .join();
+// function that splits array based on backticks and adds <code> tags:
+// TODO: use this function in the components that render code
+export const addCodeTags = (text: string) => {
+  const splitText = text.split("`");
+  const formattedText = splitText.map((text, index) => {
+    if (index % 2 === 0) {
+      return text;
+    }
 
-//   return parsedCodeString;
-// };
+    return `<code>${text}</code>`;
+  });
+
+  return formattedText.join("");
+};

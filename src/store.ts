@@ -1,9 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-import type { ChallengeDocument } from "@/service/sdk";
-
-// import type { Category, Difficulty } from "./components/sidebar";
+import type { ChallengeDocument } from "@/lib/contentful";
 
 type Category = ChallengeDocument["categories"][number];
 type Difficulty = ChallengeDocument["difficulty"];

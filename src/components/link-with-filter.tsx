@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 
-import type { ChallengeDocument } from "@/service/sdk";
+import type { ChallengeDocument } from "@/lib/contentful";
 
 import { useStore } from "../store";
 

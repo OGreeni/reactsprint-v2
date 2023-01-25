@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-import { ChallengeDocument } from "@/service/sdk";
+import { ChallengeDocument } from "@/lib/contentful";
 
 import { useStore } from "../store";
 import ChallengePreview from "./challenge-preview";

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getEntries } from "@/service/sdk";
+import { getEntries } from "@/lib/contentful";
 
 import Content from "./content";
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-import type { ChallengeDocument } from "@/service/sdk";
+import type { ChallengeDocument } from "@/lib/contentful";
 
 interface Props {
   title: string;

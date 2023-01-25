@@ -1,7 +1,7 @@
 import { createClient } from "contentful";
-import { literal, z } from "zod";
+import { z } from "zod";
 
-import { categories, difficulties } from "@/constants/challenges";
+import { categories, difficulties } from "@/constants/challenge-options";
 
 const challengeDocumentSchema = z.object({
   title: z.string(),
