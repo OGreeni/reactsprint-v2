@@ -5,11 +5,21 @@ import ChallengeHints from "@/components/challenge-hints";
 import Heading from "@/components/heading";
 import LinkWithFilter from "@/components/link-with-filter";
 import sampleChallenge from "@/data/sample-challenge.json";
-import { ChallengeDocument } from "@/service/sdk";
+import { ChallengeDocument, getEntries } from "@/service/sdk";
 import { getEntryByFilter } from "@/service/sdk";
 import { formatCode } from "@/utils/helpers";
 
 import CodeSandbox from "./code-sandbox";
+
+export async function generateStaticParams() {
+  const challenges = await getEntries({
+    contentType: "challenge",
+  });
+
+  return challenges.map((challenge) => ({
+    slug: challenge.slug,
+  }));
+}
 
 interface Props {
   params: {
