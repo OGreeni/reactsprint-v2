@@ -4,7 +4,6 @@ import { z } from "zod";
 import ChallengeHints from "@/components/challenge-hints";
 import Heading from "@/components/heading";
 import LinkWithFilter from "@/components/link-with-filter";
-import sampleChallenge from "@/data/sample-challenge.json";
 import { ChallengeDocument, getEntries } from "@/service/sdk";
 import { getEntryByFilter } from "@/service/sdk";
 import { formatCode } from "@/utils/helpers";
@@ -56,7 +55,20 @@ export default async function Page({ params: { slug } }: Props) {
             <li>
               <p>
                 <span className="font-bold">Objective:</span>{" "}
-                {challenge.objective}
+                {challenge.objective.split("`").map((substring, index) => {
+                  if (index % 2 === 0) {
+                    return substring;
+                  }
+
+                  return (
+                    <code
+                      className="rounded-md bg-base-300 p-1 font-mono"
+                      key={substring}
+                    >
+                      {substring}
+                    </code>
+                  );
+                })}
               </p>
             </li>
             <li>

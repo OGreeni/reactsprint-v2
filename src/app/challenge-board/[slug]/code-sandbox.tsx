@@ -21,7 +21,7 @@ export default function CodeSandbox({
 
   return (
     <div className="flex w-full flex-col">
-      <div className="my-2 flex justify-between">
+      <div className="my-2 flex flex-col justify-between gap-6 lg:flex-row">
         <div className="flex gap-3">
           <button
             onClick={() => setActiveLanguage("js")}
@@ -46,31 +46,30 @@ export default function CodeSandbox({
           onShowSolution={setShowSolution}
         />
       </div>
-      <div className="overflow-hidden rounded-md shadow-md">
-        <Sandpack
-          template={activeLanguage === "js" ? "react" : "react-ts"}
-          options={{
-            externalResources: [
-              "https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css",
-            ],
-            showInlineErrors: true,
-            showTabs: true,
-            showConsoleButton: true,
-            editorHeight: "60vh",
-            recompileMode: "delayed",
-            recompileDelay: 200,
-          }}
-          files={
-            activeLanguage === "js"
-              ? {
-                  "/App.js": showSolution ? jsSolution : jsStarter,
-                }
-              : {
-                  "/App.tsx": showSolution ? tsSolution : tsStarter,
-                }
-          }
-        />
-      </div>
+
+      <Sandpack
+        template={activeLanguage === "js" ? "react" : "react-ts"}
+        options={{
+          externalResources: [
+            "https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css",
+          ],
+          showInlineErrors: true,
+          showTabs: true,
+          showConsoleButton: true,
+          editorHeight: "60vh",
+          recompileMode: "delayed",
+          recompileDelay: 200,
+        }}
+        files={
+          activeLanguage === "js"
+            ? {
+                "/App.js": showSolution ? jsSolution : jsStarter,
+              }
+            : {
+                "/App.tsx": showSolution ? tsSolution : tsStarter,
+              }
+        }
+      />
     </div>
   );
 }
