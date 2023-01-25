@@ -1,38 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## ReactSprint
 
-## Getting Started
+Welcome to ReactSprint, an interactive learning platform for [React.js](https://reactjs.org/) developers to enhance their skills and advance their knowledge. ReactSprint offers a collection of challenging exercises designed to teach new concepts and improve existing skills.
 
-First, run the development server:
+### Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- A wide range of challenges designed to be practical and concise
+- A user-friendly Challenge Board for easy browsing and filtering of challenges by difficulty and category (currently available categories are hooks, state, props, event handling, effects, memo, debugging, refactoring, optimization, forms, pure components, context, refs, error boundaries, and suspense)
+- A built-in challenge editor, powered by [Sandpack](https://codesandbox.io/s/github/codesandbox/sandpack/tree/master/examples/react), allowing you to spin up a new challenge environment in seconds
+- Includes support for [TailwindCSS](https://tailwindcss.com/) classes, so you can style your components as you see fit
+- Free and open source
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### How to Use ReactSprint
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Using ReactSprint is easy! Just go to the [ReactSprint website](https://reactsprint-v2.vercel.app) and start exploring the available challenges. Once you've selected a challenge, you'll be redirected to the challenge editor where you can begin working on the solution. If you ever get stuck, you can view the suggested solution by clicking the "View Solution" button.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+ReactSprint is a collection of ReactJS challenges that are designed to help you learn and improve your skills. Each challenge is designed to be completed quickly, and in a single file. The goal is to help you elevate your skills by parcticing and learning new concepts.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Contributing to ReactSprint
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+ReactSprint welcomes contributions from its community. One way to contribute is by creating new challenges. **This functionality is coming soon**. Alternatively, you can help improve the app by opening an issue or a pull request on the [ReactSprint GitHub repository](https://github.com/ogreeni/reactsprint-v2).
 
-## Learn More
+## Roadmap
 
-To learn more about Next.js, take a look at the following resources:
+We are constantly working to improve ReactSprint and add new features to make your learning experience even better. Here are a few things we have planned for the future:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [ ] More challenges: we will be adding new challenges regularly to keep the platform fresh and engaging
+- [ ] Progress tracking: we plan to add a progress tracking feature so you can see how far you've come and what you've accomplished
+- [ ] Community features: We want to build a community around ReactSprint where users can share their solutions, ask questions, and get feedback from other users
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+We are always open to feedback and suggestions, so please let us know if there's anything else you would like to see on ReactSprint.
